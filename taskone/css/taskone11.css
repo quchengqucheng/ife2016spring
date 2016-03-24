@@ -1,0 +1,60 @@
+html,body {
+	padding: 0;
+	margin: 0;
+	font-family:  "微软雅黑";
+}
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+header {
+	width: 100%;
+	height: 4rem;
+	background-color: #91D4DA;
+	text-align: center;
+}
+header > span {
+	float: left;
+	margin-left: 1rem;
+	color: #fff;
+	font-size: 1.4rem;
+	line-height: 4rem;
+
+}
+header > h1 {
+	display: inline-block;
+	color: #fff;
+	font-size: 1.5rem;
+	line-height: 100%;
+
+}
+nav {
+	width: 100%;
+	height: 4rem;
+	/*font-size: 0;*/
+}
+.container-five {
+	list-style: none;
+	display: flex;
+	-webkit-flex: flex;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	/*为什么要重置padding和margin？*/
+}
+.container-five li {
+	flex: 1;
+	-webkit-flex: 1;
+	text-align: center;
+}
+nav ol li {
+	border-bottom: 4px solid #91D4DA;
+	height: 100%;
+	font-size: 1.4rem;
+	line-height: 4rem;
+}
+#banner {
+	width: 100%;
+}

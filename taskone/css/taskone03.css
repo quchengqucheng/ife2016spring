@@ -1,0 +1,47 @@
+body {
+	margin: 0;
+	padding: 20px;
+	font-family:"Microsoft Yahei";
+	font-size: 1em;
+	width: 100%;
+	  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+#container {
+	position: relative;
+	display: -webkit-flex;
+    display: flex;
+	height: 500px;
+	background-color: #eee;
+	border: 1px solid #999;
+	padding: 20px;
+}	
+#teamname {
+	-webkit-flex: none;
+          flex: none;
+	float: left;
+	width: 200px;
+	height: 120px;
+	border: 1px solid #999;
+	background-color: #fff;
+}
+#teamintroduction {
+	border: 1px solid #999;
+	margin: 0 20px;
+	-webkit-flex: 1;
+          flex: 1;
+}
+#teammumber {
+	-webkit-flex: none;
+          flex: none;
+	float: right;
+	width: 120px;
+	border: 1px solid #999;
+	background-color: #fff;
+}
+.team-logo {
+	width: 80px;
+	height: 80px;
+	padding: 20px;
+}

@@ -1,0 +1,99 @@
+html,body {
+	display: flex;
+	-webkit-display: flex;
+	width: 100%;
+}
+.items {
+	flex: 1;
+	-webkit-flex: 1;
+	text-align: center;
+	overflow: hidden;
+}
+table {
+	width: 80%;
+	margin: auto;
+	border-collapse:collapse;
+}
+table thead tr th {
+	color: #fff;
+	background-color: #000;
+}
+table tr:nth-child(2n+1) {
+	background-color: #aaa;
+}
+table tr:nth-child(1),
+table tr:nth-child(2),
+table tr:nth-child(3) {
+	color: red;
+}
+input {
+	width: 60%;
+}
+input:focus {
+	border: 1px solid blue;
+	width: 80%;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;	
+}
+.pic {
+	width: 300px;
+	height: 200px;
+	position: relative;
+	overflow: hidden;
+}
+.pic-container {
+	position: relative;
+	width: 900px;
+	height: 200px;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;	
+}	
+.pic-container div {
+	float: left;
+	height: 200px;
+	width: 300px;
+}
+.pic-container div:nth-child(1) {
+	background-color: blue;
+}
+.pic-container div:nth-child(2) {
+	background-color: red;
+}
+.pic-container div:nth-child(3) {
+	background-color: yellow;
+}
+#one,
+#two,
+#three {
+	display: none;
+}
+#opts {
+	/*position: absolute;*/
+	bottom: 0;
+	right: 300px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+#opts label {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	margin: 5px;
+	background-color: #ddd;
+	color: #766986;
+	font-weight: bold;
+}
+#one:checked ~ .pic .pic-container {
+	left: 0;
+}
+#two:checked ~ .pic .pic-container {
+	left: -300px;
+}
+#three:checked ~ .pic .pic-container {
+	left: -600px;
+}
