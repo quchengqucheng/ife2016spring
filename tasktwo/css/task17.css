@@ -1,0 +1,98 @@
+body,html {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	border: 0;
+	
+}
+* {
+	font-family: "Microsoft YaHei", yaHei;
+	font-size: 16px;
+	-webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+fieldset {
+	width: 88%;
+	height: 95px;
+	margin: auto;
+	border: 1px solid #0B2C65;
+	border-radius: 5px;
+	text-align: center;
+}
+#aqi-chart-wrap {
+	/*position: absolute;*/
+	display: -webkit-flex;
+    display:         flex;
+    -webkit-align-items: flex-end;
+            align-items: flex-end;
+    -webkit-justify-content: space-around;
+            justify-content: space-around;
+	position: relative;
+	bottom: 0;
+	height: 550px;
+	width: 88%;
+	padding: 0 30px;
+	margin: 10px auto;
+	border-radius: 10px;
+	border: 1px solid #0B2C65;
+}
+.divtitle p {
+	font-size: 12px;
+}
+.bear:hover .divtitle{
+	/*height: 100%;*/
+	display: block;
+}
+.divtitle {
+	position: relative;
+	top: -70px;
+	display: none;
+	width: 140px;
+	height: 60px;
+	border-radius: 5px;
+	background-color: rgba(204,255,232,0.6);
+	border: 1px solid #0C203A;
+	text-align: center;
+	
+}
+.divtitle p {
+	line-height: 100%;
+	margin: 8px auto;
+}
+#form-gra-time legend {
+	font-size: 20px;
+	margin-bottom: 5px;
+}
+#form-gra-time {
+	list-style: none;
+}
+#form-gra-time input {
+	display: none;
+}
+#form-gra-time label {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	margin: 0 5px;
+	border-radius: 25px;
+	background-color: rgba(204,255,232,0.6);
+	color: #0E364A;
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+	cursor: pointer;
+}
+#form-gra-time label:hover {
+	background-color: #69F4C6;
+}
+#form-gra-time label span {
+	line-height: 50px;
+}
+#city-select {
+    width: 100px;
+    outline: none;
+    border: 1px solid #0DE997;
+    padding: 0 20px;
+}
+ 

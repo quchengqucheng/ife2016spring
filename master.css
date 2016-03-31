@@ -2,7 +2,6 @@ html,body {
 	width: 100%;
 	padding: 0;
 	margin: 0;
-	background-color: #ccc;
 }
 * {
   -webkit-box-sizing: border-box;
@@ -15,7 +14,6 @@ a {
 }
 #container {
 	width: 100%;
-	background-color: #ccc;
 }
 .items {
 	width: 100%;
@@ -27,7 +25,7 @@ a {
 	padding: 20px;
 	border: 1px solid #4BB67C;
 	/*box-shadow: 2px 2px 10px #999;*/
-	background-color: #fff;
+	/*background-color: #fff;*/
 	list-style: none;
 }
 
@@ -43,7 +41,7 @@ a {
 	color: #252629;	
 }
 }
-.items > li:hover {
+.items li:hover {
 	background-color: #529772;
 }
 .btn-dome {
@@ -76,8 +74,10 @@ a {
 .items > li > a:hover {
 	color: #aaa;
 }
-.items .notdone {
-	background-color: transparent;
+.items .notdone h3,
+.items .notdone p,
+.items .notdone a {
+	color: transparent;
 }
 @media (min-width:768px) {
 	.items > li {width:50%}
