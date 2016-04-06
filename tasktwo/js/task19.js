@@ -1,16 +1,26 @@
-//点击事件 t
-     //效验输入事件(正则)
-//判断点击的哪个按钮
-     //输入正确 渲染队列
-//加载事件
 var data = [];
-var jsq=1;
+var onsort;
 function sort() {
+	window.clearInterval(onsort);
+	var j = data.length-1,i=0;
 	var boxesDiv = document.getElementsByClassName("boxes");
 	console.log(boxesDiv.length);
-	for(var i=0;i<(data.length-1);i++) {
-		for(var j=data.length-1;j>=i+1;j--) {
-			console.log(j-1,j);
+	onsort = setInterval(function() {
+			if(data.length==0) return false;
+			if(j<i+1) {
+				j = data.length-1;
+				i++;
+			}
+			if(i>=data.length-1) {
+				return false;
+			}
+			boxesDiv[j].style.backgroundColor = "#84958B";
+			boxesDiv[j-1].style.backgroundColor = "#84958B";
+
+			setTimeout(function() {
+				boxesDiv[j].style.backgroundColor = "#65EBA3";
+			    boxesDiv[j+1].style.backgroundColor = "#65EBA3";
+			},160);
 			var num1 = data[j-1];
 			var num2 = data[j];
 			if(num1<num2) {
@@ -18,26 +28,19 @@ function sort() {
 				data[j] = num1;
 				boxesDiv[j-1].style.height = 4*num2+"px";
 				boxesDiv[j].style.height = 4*num1+"px";
-				// boxesDiv[j-1].setAttribute("height",4*num2+"px");
-				// boxesDiv[j].setAttribute("height",4*num1+"px");
-				// console.log(num1,num2);
+			
 				boxesDiv[j-1].getElementsByTagName("span")[0].innerHTML=data[j-1];
 				boxesDiv[j].getElementsByTagName("span")[0].innerHTML=data[j];
 	    	}
-    	}
-	}
+	    	j--;
+	    	console.log(i,j);
+    	},300);
 }
-// function popUpText(btnText,num) {
-// 	var popUp = document.getElementById("popUp");
-// 	var p = document.createElement("p");
-// 	var ptext = document.createTextNode("Step"+jsq+": "+btnText+" "+num);
-// 	jsq++;
-// 	p.appendChild(ptext);
-// 	popUp.appendChild(p);
-// }
+//元素从队列中删除
 function delDiv(btn) {
 	var alertText = document.getElementById("alertText");
 	var num;
+
 	if(btn.innerHTML == "右侧出") {
 		var boxesDiv = document.getElementsByClassName("boxes");
 		if(boxesDiv.length<=0) {
@@ -64,6 +67,7 @@ function delDiv(btn) {
 	console.log(data);
 	// popUpText(btn.innerHTML,num);
 }
+//元素加入队列
 function addDiv(input,btn) {
 	var queue = document.getElementById("queue");
 	var div = document.createElement("div");
@@ -91,11 +95,11 @@ function addDiv(input,btn) {
 	alertText.innerHTML = "";
 	document.getElementById("input-text").value = "";//加入新的数字后，清空输入框
 	console.log(data);
-	// popUpText(btn.innerHTML,num);
 }
 function trim(str){ //删除左右两端的空格
 	return str.replace(/^(\s|\u00A0)+|(\s|\u00A0)+$/g, "");
 }
+//效验输入事件
 function checkInput(btn) {
 	var input = document.getElementById("input-text").value;
 	console.log(input);
@@ -122,21 +126,18 @@ function checkInput(btn) {
     alertText.innerHTML = "";
     addDiv(input,btn);
 }
+//随机生成30组数据
 function randomNums() {
+	window.clearInterval(onsort);//取消sort
 	var queue = document.getElementById("queue");
 	var boxesDiv = queue.getElementsByTagName("div");
-	// if(boxesDiv.length>0) queue.removeChild(boxesDiv);
-	console.log(boxesDiv.length);
 	var len=boxesDiv.length;
-	for(var i=0;i<len;i++) {
-		console.log(boxesDiv.length);
+	for(var i=0;i<len;i++) {     //删除原队列
 		queue.removeChild(boxesDiv[0]);
 	}
-	data =[];
-	for(var i=0;i<30;i++) {
+	data =[];                    //清空记录队列的数组
+	for(var i=0;i<30;i++) {      //随机生成队列
 		var num = Math.floor(Math.random()*90)+10;
-		// num =""+num;
-		//data.push(num);
 		addDiv(num,document.getElementsByTagName("button")[1]);
 	}
 }
@@ -145,6 +146,7 @@ function initBtnSelect() {
 	var btn = document.getElementsByTagName("button");
 	for(var i=0;i<btn.length-1;i++) {
 		btn[i].onclick = function() {
+			window.clearInterval(onsort);//取消sort
 			checkInput(this);
 		}
 	}

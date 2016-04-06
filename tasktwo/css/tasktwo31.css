@@ -1,0 +1,47 @@
+body,html {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	border: 0;
+}
+* {
+	font-family: "Microsoft YaHei", yaHei;
+	-webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+#container {
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	padding: 50px;
+}
+#table label,
+#work label {
+	font-size: 20px;
+
+}
+#school select {
+	margin: 50px;
+	font-size: 18px;
+}
+#school select:first-child {
+	width: 100px;
+}
+#school select:last-child {
+	width: 200px;
+}
+#table input {
+	height: 20px;
+	width: 20px;
+	margin-left: 50px;
+	background-color: green;
+}
+#work input {
+	height: 40px;
+	width: 300px;
+	margin: 20px;
+}
+#work {
+	display: none;
+}

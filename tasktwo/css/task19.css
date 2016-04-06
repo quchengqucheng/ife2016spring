@@ -49,19 +49,7 @@ fieldset legend {
 .boxes span {
 	line-height: 50px;
 }
-#popUp {
-	width: 88%;
-	height: 10px;
-	margin: auto;
-	padding: 20px 30px;
-	border: 1px solid #0C203A;
-	-moz-column-count: 4;
-	-moz-column-gap: 1em;
-	-webkit-column-count: 4;
-	-webkit-column-gap: 1em;
-    column-count: 4;
-	column-gap: 1em;
-}
+
 input {
 	outline: none;
 	width: 200px;
