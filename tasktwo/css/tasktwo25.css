@@ -1,0 +1,124 @@
+body,html {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	border: 0;
+}
+* {
+	font-family: "Microsoft YaHei", yaHei;
+	-webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+#container {
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	padding: 20px;
+}
+#root {
+	/*display: -webkit-flex;
+  	display: flex;
+  	-webkit-align-items: stretch;
+          align-items: stretch;
+    -webkit-justify-content: space-around;
+          justify-content: space-around; */
+	/*height: 300px;*/
+	/*border: 1px solid green;*/
+	border-radius: 5px;
+	margin: 10px 30px;
+	text-align: left;
+}
+.child {
+	/*display: -webkit-flex;
+  	display: flex;
+	flex-grow: 1;*/
+	/*border: 1px solid green;*/
+	border-radius: 5px;
+	margin: 10px 30px;
+	background-color: #fff;
+}
+.child .tree-title {
+	display: inline-block;
+	margin-left: 5px;
+	margin-right: 5px;
+	font-size: 16px;
+	cursor: pointer;
+}
+#show {
+	background-color: #C3E935;
+}
+/*#original {
+	background-color: #fff;
+}*/
+#highlight {
+	background-color: lightgreen;
+}
+#select {
+	background-color: #F6F134;
+}
+button {
+	width: 140px;
+    outline: none;
+    border: 1px solid #7DF7CA;
+    border-radius: 5px;
+    padding: 5px 20px;
+    margin: 10px;
+    font-size: 20px;
+    background-color: #7DF7CA;
+    box-shadow: 2px 2px 5px #ccc;
+}
+button:hover {
+	background-color: #A2DBF1;
+}
+input {
+	outline: none;
+	height: 30px;
+	margin-left: 20px
+	border: 1px solid #ccc;
+}
+input:focus {
+	border-color: #7DF7CA;
+}
+#alertText,
+#alertText2 {
+	display: inline-block;
+	position: relative;
+	top: 5px;
+	width: 110px;
+	font-size: 14px;
+}
+.tree-title-sign {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+	/*border: 1px solid #000;*/
+}
+#floatDiv{
+	display: none;
+
+}
+.tree-delet
+/*,.tree-add */
+{
+	/*display: none;*/
+	margin-left: 30px;
+}
+.tree-add,
+.tree-delet {
+	display: none;
+}
+
+.tree-title:hover {
+	color: #337590;
+}
+
+.tree-title:hover .tree-delet,
+.tree-title:hover .tree-add {
+	display: inline-block;
+}
+.tree-add,
+.tree-delet {
+	color: #aaa;
+}

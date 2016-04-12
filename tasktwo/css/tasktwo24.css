@@ -1,0 +1,81 @@
+body,html {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	border: 0;
+}
+* {
+	font-family: "Microsoft YaHei", yaHei;
+	-webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+#container {
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	padding: 20px;
+}
+#root {
+	display: -webkit-flex;
+  	display: flex;
+  	-webkit-align-items: stretch;
+          align-items: stretch;
+    -webkit-justify-content: space-around;
+          justify-content: space-around; 
+	height: 300px;
+	/*border: 1px solid green;*/
+	border-radius: 5px;
+	margin: 10px;
+}
+.child {
+	display: -webkit-flex;
+  	display: flex;
+	flex-grow: 1;
+	border: 1px solid green;
+	border-radius: 5px;
+	margin: 10px;
+	background-color: #fff;
+}
+#show {
+	background-color: #C3E935;
+}
+/*#original {
+	background-color: #fff;
+}*/
+#highlight {
+	background-color: lightgreen;
+}
+#select {
+	background-color: #F6F134;
+}
+button {
+	width: 140px;
+    outline: none;
+    border: 1px solid #7DF7CA;
+    border-radius: 5px;
+    padding: 5px 20px;
+    margin: 10px;
+    font-size: 20px;
+    background-color: #7DF7CA;
+    box-shadow: 2px 2px 5px #ccc;
+}
+button:hover {
+	background-color: #A2DBF1;
+}
+input {
+	outline: none;
+	height: 30px;
+	margin-left: 20px
+	border: 1px solid #ccc;
+}
+input:focus {
+	border-color: #7DF7CA;
+}
+span {
+	display: inline-block;
+	position: relative;
+	top: 5px;
+	width: 110px;
+	font-size: 14px;
+}
