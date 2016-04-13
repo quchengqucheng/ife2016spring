@@ -22,12 +22,16 @@ body,html {
   	-webkit-align-items: stretch;
           align-items: stretch;
     -webkit-justify-content: space-around;
-          justify-content: space-around; */
+          justif6-content: space-around; */
 	/*height: 300px;*/
-	/*border: 1px solid green;*/
+	width: 400px;
+	border: 1px solid green;
 	border-radius: 5px;
-	margin: 10px 30px;
+	margin: auto;
 	text-align: left;
+}
+#root:first-child {
+	/*text-align: left;*/
 }
 .child {
 	/*display: -webkit-flex;
@@ -35,7 +39,7 @@ body,html {
 	flex-grow: 1;*/
 	/*border: 1px solid green;*/
 	border-radius: 5px;
-	margin: 10px 30px;
+	margin: 10px 0 10px 30px;
 	background-color: #fff;
 }
 .child .tree-title {
@@ -52,7 +56,8 @@ body,html {
 	background-color: #fff;
 }*/
 #highlight {
-	background-color: lightgreen;
+	/*background-color: lightgreen;*/
+	color: lightgreen;
 }
 #select {
 	background-color: #F6F134;
@@ -99,15 +104,13 @@ input:focus {
 	display: none;
 
 }
-.tree-delet
-/*,.tree-add */
-{
-	/*display: none;*/
-	margin-left: 30px;
+.tree-add {
+	display: none;
+	margin-left: 8px;
 }
-.tree-add,
 .tree-delet {
 	display: none;
+	margin-left: 40px;
 }
 
 .tree-title:hover {

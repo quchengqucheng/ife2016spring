@@ -1,7 +1,6 @@
 var traverse = [];// 储存创建的node节点
 var queue = [];   // 储存遍历的div节点
-var search = [];  // 储存搜索到div节点
-var showdiv;      // 展示遍历
+var search = [];  // 储存搜索到div节点 用于清空样式
 // 多叉树结点的构造函数
 function Node(data,text,amount,childNode,parentNode) {
 	this.data = data; 		   // 存放当前div
@@ -33,15 +32,12 @@ function createTree(num,text,childNum) {
 		}
 		addTree(node);
 	}
-	var root2 =root;
-	console.log(root2,"hah");
-
 	return root;
 }
 // 渲染多叉树
-function renderTree(rt,parentDiv) {
-	if(rt!=null) {
-		// rt.data = parentDiv;
+function renderTree(value) {
+	// if(value!=null) {
+		// value.data = parentDiv;
 		var childDiv = document.createElement("div");
 		var span  = document.createElement("span");
 		var i = document.createElement("i");
@@ -51,7 +47,7 @@ function renderTree(rt,parentDiv) {
 		i.setAttribute("class","fa fa-minus-square-o fa-fw tree-title-sign");//fa fa-plus-square-o fa-fw fa fa-minus-square-o fa-fw
 		i.style.display = "none";
 		// i.setAttribute("aria-hidden","true");
-		span.innerHTML = rt.text;
+		span.innerHTML = value;
 		span.setAttribute("class","tree-title");
 
 		deletSign.setAttribute("class","fa fa-trash-o tree-delet");
@@ -59,21 +55,30 @@ function renderTree(rt,parentDiv) {
 
 		childDiv.setAttribute("class","child");
 		childDiv.style.display = "block";
-		childDiv.value = rt.text;//记录节点名称
+		childDiv.value = value;//记录节点名称
 
 		childDiv.appendChild(i);
 		span.appendChild(deletSign);
 		span.appendChild(addSign);
 		childDiv.appendChild(span);
 
+		
+		
+	// }
+	return childDiv;
+}
+function order(rt,parentDiv) {
+	if(rt!=null) {
+		value = rt.text;
+		var childDiv = renderTree(value);
 		rt.data = childDiv;
 		parentDiv.appendChild(childDiv);
-		if(rt.childNode.length>0) {
-			rt.data.firstChild.style.display = "inline-block";
-		}
-		for(var i=0;i<rt.childNode.length;i++) {
-			renderTree(rt.childNode[i],childDiv);
-		}
+	}
+	if(rt.childNode.length>0) {
+		rt.data.firstChild.style.display = "inline-block";
+	}
+	for(var i=0;i<rt.childNode.length;i++) {
+		order(rt.childNode[i],childDiv);
 	}
 }
 //停止遍历、搜索
@@ -81,10 +86,9 @@ function clearAll() {
 	//已搜索到的元素恢复为原样式
 	function cleanShow(search) {
 		while(search.length>0) {
-			search.shift().id ="";
+			search.shift().firstChild.nextSibling.id ="";
 		}
 	}
-	clearInterval(showdiv);
  	queue = [];
  	cleanShow(search);
 }
@@ -93,68 +97,61 @@ function show(queue,value,rt) {
 	var count = 0;
 	var findoutDiv = [];
 	console.log(typeof(value));
-	showdiv = setInterval(function() {
-		if(queue.length>0) {
-			var div = queue.shift();
-			// console.log(typeof(div.value));
-			// div.setAttribute("id","show");
-			search.push(div);
-		}
-		else {
-			clearInterval(showdiv);//队列为空，取消用setInterval设置的重复定时任务
-			if(value!==null) {
-				if(count===0) noteText("没有查询到元素","green");
-            	else noteText("查询到"+count+"个元素","green");
-			}
-			if(findoutDiv.length>0) {
-				for(var i=0;i<findoutDiv.length;i++) {
-					var findDiv = findoutDiv[i];
-					// findDiv.style.display = "block";
-					Order(rt);
-					function Order(rt) {
-						if(rt.data===findDiv){        //无Bug
-							rt.parentNode.data.firstChild.className = "fa fa-plus-square-o fa-fw tree-title-sign";
+	while(queue.length>0) {
+		var div = queue.shift();
+		search.push(div);
+		if(findoutDiv.length>0) {
+			for(var i=0;i<findoutDiv.length;i++) {
+				var findDiv = findoutDiv[i];
+				// findDiv.style.display = "block";
+				Order(rt);
+				function Order(rt) {
+					if(rt.data===findDiv){        //无Bug
+						rt.parentNode.data.firstChild.className = "fa fa-minus-square-o fa-fw tree-title-sign";
+						// rt.parentNode.data.firstChild.innerHTML = "-";
+						for(var i=0;i<rt.parentNode.childNode.length;i++) {
+					       	rt.parentNode.childNode[i].data.style.display = "block";
+						}
+						var parentt = rt.parentNode;
+						while(parentt.parentNode!==null) {//有父节点，父节点展开
 							// rt.parentNode.data.firstChild.innerHTML = "-";
-							for(var i=0;i<rt.parentNode.childNode.length;i++) {
-						       	rt.parentNode.childNode[i].data.style.display = "block";
+							parentt.parentNode.data.firstChild.className = "fa fa-minus-square-o fa-fw tree-title-sign";
+							for(var i=0;i<parentt.parentNode.childNode.length;i++) {
+						       	parentt.parentNode.childNode[i].data.style.display = "block";
 							}
-							var parentt = rt.parentNode;
-							while(parentt.parentNode!==null) {//有父节点，父节点展开
-								// rt.parentNode.data.firstChild.innerHTML = "-";
-								rt.parentNode.data.firstChild.className = "fa fa-plus-square-o fa-fw tree-title-sign";
-								for(var i=0;i<parentt.parentNode.childNode.length;i++) {
-							       	parentt.parentNode.childNode[i].data.style.display = "block";
-								}
-								parentt = parentt.parentNode;
-							}
-							return;
+							parentt = parentt.parentNode;
 						}
-						if(rt!==null) {
-							for(var i=0;i<rt.childNode.length;i++) {
-								Order(rt.childNode[i]);
-							}
+						return;
+					}
+					if(rt!==null) {
+						for(var i=0;i<rt.childNode.length;i++) {
+							Order(rt.childNode[i]);
 						}
-					}//Order(rt)
-				}
-				for(var i=0;i<findoutDiv.length;i++) {
-					findoutDiv[i].id = "highlight";
-				}
-			}//if(findoutDiv.length>0)
-			
-			return;
-		}
-		if(value!==null&&div.value.toString() === value) {//搜索到元素
-			// setTimeout(function(){
-			// 	div.id ="highlight";
-			// },300);
-			count++;
-			findoutDiv.push(div);
-		}
-		else {//恢复元素原样式
-			div.id ="";
-		}
-	},0);
-	// if(showdiv) noteText("查询完毕"+count+"个","green");
+					}
+				}//Order(rt)
+			}
+			for(var i=0;i<findoutDiv.length;i++) {
+				findoutDiv[i].firstChild.nextSibling.id = "highlight";
+			}
+		}//if(findoutDiv.length>0)
+		
+	if(value!==null&&div.value.toString() === value) {//搜索到元素
+		// setTimeout(function(){
+			// div.id ="highlight";
+		// },300);
+		count++;
+		findoutDiv.push(div);
+	}
+	else {//恢复元素原样式
+		div.firstChild.nextSibling.id ="";
+	}//if
+}//while
+	
+	if(value!==null) {
+		if(count===0) noteText("没有查询到元素","green");
+    	else noteText("查询到"+count+"个元素","green");
+	}
+
 }
 // 先序遍历
 function preOrder(rt) {
@@ -166,44 +163,34 @@ function preOrder(rt) {
 	}
 	return queue;
 }
-function del() {
-	if (choseDiv.parentNode) {
-		choseDiv.parentNode.removeChild(choseDiv);
-    }
-}
 var choseDiv;
 function initTree() {
 	var num =      [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];//多叉树节点"-"
 	var text = 	   ['任务列表','今日任务','短期任务','长期任务','总结笔记','算法题','跑步','学习JS函数','学习JS面向对象','学习JS面向对象','学习JS设计模式','JS正则表达式','JS函数','动态规划','回溯法'];//多叉树名字
 	var childNum = [3,3,2,2,2,2,2,0,0, 0, 0, 0, 0, 0, 0];//子节点个数
 	var rt = createTree(num,text,childNum);//同时执行吗？
-	renderTree(rt,$("root"));//同时执行吗？
+	order(rt,$("root"));//同时执行吗？
 	console.log(rt);
 
 	
 	$("container").addEventListener('click',function(e){
-	   if(choseDiv!==undefined&&e.target.nodeName.toLowerCase()!=="input") choseDiv.id = "";
-       // if((e.target||e.srcElement)&&e.target.nodeName.toLowerCase()==="div"&&e.target.className==="child") {
-       // 	 e.target.id = "select";
-       // 	 choseDiv=e.target;
-       // }
        if((e.target||e.srcElement)&&(e.target.className==="tree-title"||e.target.className==="fa fa-minus-square-o fa-fw tree-title-sign"||e.target.className==="fa fa-plus-square-o fa-fw tree-title-sign")) {
-       	var treeTitle = e.target;
+       	// var treeTitle = e.target;
+       	var treeSign= e.target;
        	var len;
        	Order(rt);
        	if(len) {
-       		if(treeTitle.className==="tree-title") {//fa fa-plus-square-o fa-fw
-	       		treeTitle =treeTitle.previousSibling;
+       		if(treeSign.className==="tree-title") {//fa fa-plus-square-o fa-fw 选中节点更改图标
+	       		treeSign =treeSign.previousSibling;
 	       	}
-	       	if(treeTitle.className==="fa fa-minus-square-o fa-fw tree-title-sign") {
-	       		treeTitle.className = "fa fa-plus-square-o fa-fw tree-title-sign";
-	   		}else if(treeTitle.className === "fa fa-plus-square-o fa-fw tree-title-sign") {
-	   			treeTitle.className = "fa fa-minus-square-o fa-fw tree-title-sign";
+	       	if(treeSign.className==="fa fa-minus-square-o fa-fw tree-title-sign") {
+	       		treeSign.className = "fa fa-plus-square-o fa-fw tree-title-sign";
+	   		}else if(treeSign.className === "fa fa-plus-square-o fa-fw tree-title-sign") {
+	   			treeSign.className = "fa fa-minus-square-o fa-fw tree-title-sign";
 	   		}	
        	}
        	function Order(rt) {
-			//if(rt.text===choseDiv.value) { //节点的名称如果相同则有Bug
-			if(rt.data===treeTitle.parentNode){        //无Bug
+			if(rt.data===treeSign.parentNode){        //找到选中节点 更改子元素display
 				len = rt.childNode.length;
 				for(var i=0;i<rt.childNode.length;i++) {
 					if(rt.childNode[i].data.style.display === "block")
@@ -266,74 +253,37 @@ function initTree() {
 			value = addcheckInputText($("addinputText"));
 			if(value!==null&&value!=="") $("floatDiv").style.display = "none"; 
 			console.log(value);
-			compareValue(value);
-		} ,false);
-		// var value = addcheckInputText($("addinputText"));
-		function compareValue(value) {
-
-		
-		if(value!==null&&value!=="") {
+			// renderTree(rt,)
+			// compareValue(value);
 			var node = new Node(null,value,0,null,null);
-			var childDiv = document.createElement("div");
-			var span  = document.createElement("span");
-			var i = document.createElement("i");
-			var deletSign = document.createElement("i");
-			var addSign = document.createElement("i");
+			var childDiv =  renderTree(value);
+			choseDiv.appendChild(childDiv);//新节点加入到选中节点中
 
-			i.setAttribute("class","fa fa-minus-square-o fa-fw tree-title-sign");
-			i.style.display = "none";
-			// i.setAttribute("aria-hidden","true");
-			span.innerHTML = value;//不一样
-			span.setAttribute("class","tree-title");
-
-			deletSign.setAttribute("class","fa fa-trash-o tree-delet");
-			addSign.setAttribute("class","fa fa-plus tree-add");
-
-			childDiv.setAttribute("class","child");
-			childDiv.style.display = "block";
-			childDiv.value = value;//记录节点名称 不一样
-
-			childDiv.appendChild(i);
-			span.appendChild(deletSign);
-			span.appendChild(addSign);
-			childDiv.appendChild(span);
-	
-
-			choseDiv.appendChild(childDiv);
-
-			function add(value) {
-				
-				// 遍历找到选中的节点 选中节点添加子节点
-				Order(rt);
-				function Order(rt) {
-					if(rt.data===choseDiv) {
-						rt.childNode.push(node);
-						node.parentNode = rt;
-						rt.data.firstChild.style.display = "inline-block";
-						node.data = childDiv;
-						
-						for(var i=0;i<rt.childNode.length;i++) {
-							rt.childNode[i].data.style.display = "block";
-						}
-						// console.log(rt.data,"haha");
-						return;
+			Order(rt);//遍历找到选中节点 
+			function Order(rt) {
+				if(rt.data===choseDiv) {//选中节点图标更新
+					rt.childNode.push(node);
+					node.parentNode = rt;
+					rt.data.firstChild.style.display = "inline-block";//fa fa-minus-square-o fa-fw tree-title-sign
+					rt.data.firstChild.className = "fa fa-minus-square-o fa-fw tree-title-sign";
+					node.data = childDiv;
+					
+					for(var i=0;i<rt.childNode.length;i++) {//选中节点子节点展开
+						rt.childNode[i].data.style.display = "block";
 					}
-					if(rt!==null) {
-						// queue.push(rt.data);
-						for(var i=0;i<rt.childNode.length;i++) {
-							Order(rt.childNode[i]);
-						}
+					// console.log(rt.data,"haha");
+					return;
+				}
+				if(rt!==null) {
+					// queue.push(rt.data);
+					for(var i=0;i<rt.childNode.length;i++) {
+						Order(rt.childNode[i]);
 					}
 				}
-				
 			}
-			add(value);
-			console.log(childDiv.value);
-			
-			// node.data = childDiv;
-		}
-		// else addnoteText("节点名称不能为空","red");
-		}
+	} ,false);
+
+		
 
 	$("preSearch").addEventListener('click',function(){
 		var value = checkInputText($("inputText"));
