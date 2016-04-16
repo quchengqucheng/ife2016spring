@@ -15,32 +15,33 @@ body,html {
 	width: 100%;
 	text-align: center;
 	padding: 20px;
+	background-color: #F2FCEC; 
 }
 #root {
-	/*display: -webkit-flex;
-  	display: flex;
-  	-webkit-align-items: stretch;
-          align-items: stretch;
-    -webkit-justify-content: space-around;
-          justif6-content: space-around; */
-	/*height: 300px;*/
 	width: 400px;
-	border: 1px solid green;
+	/*border: 1px solid green;*/
 	border-radius: 5px;
+	padding: 24px 0;
 	margin: auto;
 	text-align: left;
+	background-color: #CCFFCB;
+	-webkit-background-size: 62px 62px;
+       -moz-background-size: 62px 62px;
+            background-size: 62px 62px;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, rgba(0, 0, 0, .1)), color-stop(.5, transparent), to(transparent));
+	background-image: -moz-linear-gradient(rgba(0, 0, 0, .1) 50%, transparent 50%, transparent);
+	background-image: -o-linear-gradient(rgba(0, 0, 0, .1) 50%, transparent 50%, transparent);
+	background-image: linear-gradient(rgba(0, 0, 0, .1) 50%, transparent 50%, transparent);
 }
 #root:first-child {
 	/*text-align: left;*/
 }
 .child {
-	/*display: -webkit-flex;
-  	display: flex;
-	flex-grow: 1;*/
 	/*border: 1px solid green;*/
 	border-radius: 5px;
-	margin: 10px 0 10px 30px;
-	background-color: #fff;
+	margin: 10px 0 0 30px;
+	color: #333;
+	/*background-color: #fff;*/
 }
 .child .tree-title {
 	display: inline-block;
@@ -63,11 +64,11 @@ body,html {
 	background-color: #F6F134;
 }
 button {
-	width: 140px;
+	width: 130px;
     outline: none;
     border: 1px solid #7DF7CA;
     border-radius: 5px;
-    padding: 5px 20px;
+    padding:2px 20px;
     margin: 10px;
     font-size: 20px;
     background-color: #7DF7CA;
@@ -114,7 +115,9 @@ input:focus {
 }
 
 .tree-title:hover {
-	color: #337590;
+	color: #339062;
+	/*text-shadow: 1px 1px 1px #aaa;*/
+	/*text-shadow: 5px 5px 5px solid #339062;*/
 }
 
 .tree-title:hover .tree-delet,
@@ -123,5 +126,9 @@ input:focus {
 }
 .tree-add,
 .tree-delet {
-	color: #aaa;
+	color: #008B6E;
+}
+.tree-add:hover,
+.tree-delet:hover {
+	color: #666;
 }

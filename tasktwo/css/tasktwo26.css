@@ -1,0 +1,117 @@
+body,html {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	border: 0;
+	overflow: hidden;
+}
+* {
+	font-family: "Microsoft YaHei", yaHei;
+	-webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+#container {
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: column-reverse;
+	width: 100%;
+	/*height: 100%;*/
+	overflow: hidden;
+	text-align: center;
+}
+#orbit1,
+#orbit2,
+#orbit3,
+#orbit4 {
+	position: relative;
+	margin: auto;
+	border: 1px solid red;
+	border-radius: 50%;
+}
+#orbit1 {
+	width: 200px;
+	height: 200px;
+	top: -950px;
+}
+#orbit2 {
+	width: 300px;
+	height: 300px;
+	top: -700px;
+}
+#orbit3 {
+	width: 400px;
+	height: 400px;
+	top: -350px;
+}
+#orbit4 {
+	width: 500px;
+	height: 500px;
+	top: 100px;
+}
+.axis {
+	position: relative;
+}
+#orbit1>.axis,
+#orbit2>.axis,
+#orbit3>.axis,
+#orbit4>.axis {
+	height: 100%;
+	width: 100%;
+	/*border: 1px solid green;*/
+	-webkit-transition: all 1s;
+	-moz-transition: all 1s;
+	-o-transition: all 1s;
+	transition: all 1s;
+}
+/*#orbit1>.axis,
+#orbit2>.axis {
+	transform: rotate(30deg);
+	-ms-transform: rotate(30deg);		
+	-webkit-transform: rotate(30deg);	
+	-o-transform: rotate(30deg);		
+	-moz-transform: rotate(30deg);
+}
+*/
+#orbit1 >.axis >.energybar,
+#orbit2 >.axis >.energybar,
+#orbit3 >.axis >.energybar,
+#orbit4 >.axis >.energybar {
+	position: absolute;
+	width: 40px;
+	height: 20px;
+	border: 1px solid #000;
+}
+#orbit1 >.axis >.energybar {
+
+	left: 80px;
+	top: -10px;
+}
+#orbit2 >.axis >.energybar {
+	left: 130px;
+	top: -10px;
+}
+#orbit3 >.axis >.energybar {
+	left: 180px;
+	top: -10px;
+}
+#orbit4>.axis >.energybar {
+	left: 230px;
+	top: -10px;
+}
+#control {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 400px;
+	height: 200px;
+	border: 1px solid red;
+}
+#control-bar {
+	height: 50px;
+	margin: auto;
+}
+button {
+	width: 100px;
+	height: 30px;
+}
